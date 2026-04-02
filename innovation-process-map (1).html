@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product & Technology Innovation — Module Assessment Process</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #020434;
+    --pink: #E60F65;
+    --lavender: #EDF0FA;
+    --white: #FFFFFF;
+    --gray-100: #F7F8FC;
+    --gray-200: #E2E5F0;
+    --gray-400: #8B90A8;
+    --gray-600: #4A4E68;
+    --navy-light: #1A1D4E;
+    --pink-soft: #FDE8F0;
+    --green: #0FA86E;
+    --amber: #E6A20F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--navy);
+    padding: 48px 64px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230,15,101,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--pink);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    max-width: 680px;
+  }
+  .header-sub {
+    color: var(--gray-400);
+    font-size: 15px;
+    margin-top: 12px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* ── Main canvas ── */
+  .canvas {
+    padding: 56px 64px 72px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── Flow connector line ── */
+  .flow-track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  /* ── Step card ── */
+  .step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0 24px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .step:nth-child(1) { animation-delay: 0.1s; }
+  .step:nth-child(2) { animation-delay: 0.2s; }
+  .step:nth-child(3) { animation-delay: 0.3s; }
+  .step:nth-child(4) { animation-delay: 0.4s; }
+  .step:nth-child(5) { animation-delay: 0.5s; }
+  .step:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Left rail — number + connector */
+  .step-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .step-number {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    background: var(--navy);
+    border: 3px solid var(--lavender);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .step-number.accent {
+    background: var(--pink);
+    border-color: var(--pink-soft);
+  }
+  .step-number.green {
+    background: var(--green);
+    border-color: #d0f0e2;
+  }
+  .step-connector {
+    width: 3px;
+    flex: 1;
+    background: linear-gradient(180deg, var(--lavender) 0%, var(--gray-200) 100%);
+    min-height: 20px;
+  }
+
+  /* Right — content card */
+  .step-card {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+  }
+  .step-card:hover {
+    box-shadow: 0 8px 32px rgba(2,4,52,0.08);
+    border-color: var(--pink);
+  }
+  .step-card.highlight {
+    background: var(--lavender);
+    border-color: rgba(2,4,52,0.12);
+  }
+
+  .step-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-600);
+  }
+
+  /* ── Decision diamond ── */
+  .decision-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--pink-soft);
+    color: var(--pink);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+  .decision-badge svg { flex-shrink: 0; }
+
+  .outcome-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .outcome {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .outcome.yes {
+    background: #e8faf1;
+    color: #0a6b45;
+    border: 1px solid #b0e6cd;
+  }
+  .outcome.no {
+    background: #fff5e6;
+    color: #8a5e00;
+    border: 1px solid #f0d89c;
+  }
+  .outcome-label {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* ── Business case breakdown ── */
+  .bc-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .bc-pillar {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 18px 16px;
+    transition: border-color 0.2s;
+  }
+  .bc-pillar:hover { border-color: var(--pink); }
+  .bc-pillar-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--pink);
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .bc-pillar-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .bc-pillar-desc {
+    font-size: 12.5px;
+    color: var(--gray-600);
+    line-height: 1.55;
+  }
+
+  /* ── Scoring criteria chips ── */
+  .criteria-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .criteria-chip {
+    background: var(--lavender);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── Executive approval bar ── */
+  .exec-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .exec-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .exec-badge .role {
+    font-size: 11px;
+    color: var(--gray-400);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1px;
+  }
+  .exec-badge .title {
+    color: var(--white);
+  }
+  .exec-badge svg { flex-shrink: 0; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 32px 64px;
+    border-top: 1px solid var(--gray-200);
+    color: var(--gray-400);
+    font-size: 12px;
+  }
+
+  /* ── Arrow icon inline ── */
+  .arrow-down {
+    display: flex;
+    justify-content: center;
+    padding: 2px 0;
+  }
+
+  /* ── Print / presentation tweaks ── */
+  @media print {
+    .step { animation: none; opacity: 1; transform: none; }
+    .header { padding: 32px 48px; }
+    .canvas { padding: 32px 48px; }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 32px 24px; }
+    .header h1 { font-size: 26px; }
+    .canvas { padding: 32px 24px; }
+    .step { grid-template-columns: 48px 1fr; gap: 0 14px; }
+    .bc-pillars { grid-template-columns: 1fr; }
+    .outcome-row { grid-template-columns: 1fr; }
+    .exec-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<div class="header">
+  <div class="header-eyebrow">Product & Technology Innovation</div>
+  <h1>Module Assessment &amp; Prioritization Process</h1>
+  <p class="header-sub">How new module ideas move from concept to roadmap — the structured pathway for engaging our product and technology innovation team.</p>
+</div>
+
+<!-- ════ FLOW ════ -->
+<div class="canvas">
+  <div class="flow-track">
+
+    <!-- ── STEP 1: Intake ── -->
+    <div class="step">
+      <div class="step-rail">
+        <div class="step-number">1</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Submission</div>
+        <div class="step-title"><a href="#" target="_blank" style="color: var(--pink); text-decoration: none; border-bottom: 2px solid var(--pink);">Product Intake Form</a></div>
+        <p class="step-desc">Any team across the organization can submit a new module idea via the <a href="#" target="_blank" style="color: var(--pink); text-decoration: none; font-weight: 600;">SharePoint intake form</a>. The form captures the concept, the business problem it addresses, and the submitter's initial perspective on market opportunity. This ensures every idea enters the pipeline through a single, consistent channel.</p>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: Weekly Review ── -->
+    <div class="step">
+      <div class="step-rail">
+        <div class="step-number">2</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Evaluation</div>
+        <div class="step-title">Weekly Innovation Review</div>
+        <p class="step-desc">Each week, the Product &amp; Technology Innovation team reviews all new submissions. We meet directly with every submitter to scope out the idea's feasibility and business value, ensuring we fully understand the problem space before making any assessment.</p>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: Decision Gate ── -->
+    <div class="step">
+      <div class="step-rail">
+        <div class="step-number accent">3</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Decision Gate</div>
+        <div class="step-title">Market Value Assessment</div>
+        <p class="step-desc">The team evaluates whether the idea presents a strong market value proposition. This is the first critical gate — it determines whether the idea advances to a full business case or is redirected.</p>
+        <div class="decision-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 7L7 13L1 7L7 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          Strong market value proposition?
+        </div>
+        <div class="outcome-row">
+          <div class="outcome yes">
+            <div class="outcome-label">✓ Yes — Advance</div>
+            Proceed to Module Business Case development with the innovation team.
+          </div>
+          <div class="outcome no">
+            <div class="outcome-label">✗ Not Yet</div>
+            Feedback provided to submitter. Idea logged for future re-evaluation as market conditions evolve.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: Business Case ── -->
+    <div class="step">
+      <div class="step-rail">
+        <div class="step-number accent">4</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card highlight">
+        <div class="step-label">Business Case Development</div>
+        <div class="step-title"><a href="#" target="_blank" style="color: var(--navy); text-decoration: none; border-bottom: 2px solid var(--pink);">Module Business Case Template</a></div>
+        <p class="step-desc">For ideas that clear the market value gate, the team completes a structured business case built around three pillars that together provide the full picture of viability, return potential, and commercial readiness. Access the <a href="#" target="_blank" style="color: var(--pink); text-decoration: none; font-weight: 600;">template</a> to get started.</p>
+
+        <div class="bc-pillars">
+          <div class="bc-pillar">
+            <div class="bc-pillar-num">1</div>
+            <div class="bc-pillar-title">Module Overview &amp; Objective</div>
+            <div class="bc-pillar-desc">Clear articulation of what the module does, the problem it solves, and the strategic objective it serves within the broader platform.</div>
+            <div class="criteria-row">
+              <span class="criteria-chip">Value Proposition</span>
+              <span class="criteria-chip">Company Impact</span>
+              <span class="criteria-chip">Workflows Enabled</span>
+            </div>
+          </div>
+          <div class="bc-pillar">
+            <div class="bc-pillar-num">2</div>
+            <div class="bc-pillar-title">Anticipated ROI &amp; Weighted Scoring</div>
+            <div class="bc-pillar-desc">Quantified return-on-investment analysis using weighted scoring criteria across four dimensions.</div>
+            <div class="criteria-row">
+              <span class="criteria-chip">Financial Model</span>
+              <span class="criteria-chip">Feasibility</span>
+              <span class="criteria-chip">Market Fit</span>
+              <span class="criteria-chip">Technical Complexity</span>
+            </div>
+          </div>
+          <div class="bc-pillar">
+            <div class="bc-pillar-num">3</div>
+            <div class="bc-pillar-title">Go-to-Market Strategy</div>
+            <div class="bc-pillar-desc">Complete commercial plan including use cases, buyer personas, sales enablement materials, and marketing content to equip the sales team.</div>
+            <div class="criteria-row">
+              <span class="criteria-chip">Use Cases</span>
+              <span class="criteria-chip">Competitors</span>
+              <span class="criteria-chip">Target Personas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 5: Executive Review ── -->
+    <div class="step">
+      <div class="step-rail">
+        <div class="step-number">5</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Executive Approval</div>
+        <div class="step-title">Leadership Review &amp; Alignment</div>
+        <p class="step-desc">The completed business case is reviewed by executive leadership for approval. The Chief Growth Officer evaluates market and revenue potential, while aligning with the Chief Technology Officer on technical feasibility, resource allocation, and platform architecture fit.</p>
+        <div class="exec-row">
+          <div class="exec-badge">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="white" stroke-width="1.5" fill="none"/><path d="M3 18c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="white" stroke-width="1.5" fill="none"/></svg>
+            <div><span class="role">Approval Authority</span><span class="title">Chief Growth Officer</span></div>
+          </div>
+          <div class="exec-badge">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="white" stroke-width="1.5" fill="none"/><path d="M3 18c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="white" stroke-width="1.5" fill="none"/></svg>
+            <div><span class="role">Technical Alignment</span><span class="title">Chief Technology Officer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 6: Prioritization ── -->
+    <div class="step">
+      <div class="step-rail">
+        <div class="step-number green">6</div>
+      </div>
+      <div class="step-card" style="border-color: var(--green); border-width: 2px;">
+        <div class="step-label" style="color: var(--green);">Outcome</div>
+        <div class="step-title">Roadmap Prioritization &amp; Backlog Placement</div>
+        <p class="step-desc">Approved modules are prioritized into the product roadmap and development backlog based on their weighted ROI score, strategic alignment, and resource availability. The module enters the build pipeline with a clear scope, timeline, and go-to-market plan ready for execution.</p>
+      </div>
+    </div>
+
+  </div><!-- /flow-track -->
+</div><!-- /canvas -->
+
+<div class="footer">
+  Product & Technology Innovation — Module Assessment Process &nbsp;·&nbsp; Confidential
+</div>
+
+</body>
+</html>
